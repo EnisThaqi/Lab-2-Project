@@ -1,0 +1,14 @@
+cmd
+dotnet ef migrations add emriMigration
+dotnet ef database update
+roll back
+dotnet ef database update <PreviousMigrationName>
+dotnet ef migrations list
+
+package manager console
+Add-Migration InitialCreate
+Update-Database
+
+
+//pathi i projektit tem sju vyn sen 
+cd C:\Users\Hp\source\repos\Lab2\Lab2 
