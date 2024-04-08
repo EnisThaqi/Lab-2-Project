@@ -33,6 +33,8 @@ namespace Lab2.DataService
         public DbSet<SubjectType> subject_type { get; set; }
         public DbSet<Orders> orders { get; set; }
         public DbSet<PackageSizes> Packagesizes { get; set; }
+        public DbSet<Subjects> subjects { get; set; }
+
 
        protected override void OnModelCreating(ModelBuilder modelBuilder)
        {
@@ -42,6 +44,12 @@ namespace Lab2.DataService
                 .HasOne(u => u.roles)
                 .WithMany(r => r.Users)
                 .HasForeignKey(u => u.RoletID);
+
+
+            modelBuilder.Entity<Subjects>()
+                .HasOne(s => s.subjectType)
+                .WithMany(st => st.subjects)
+                .HasForeignKey(s => s.Subject_TypeID);
         }
     }
 

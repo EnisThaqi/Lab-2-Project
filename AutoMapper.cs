@@ -13,6 +13,7 @@ namespace Lab2
             CreateMap<SubjectTypeDTO, SubjectType>();
             CreateMap<OrdersDTO, Orders>();
             CreateMap<PackageSizesDTO, PackageSizes>();
+            CreateMap<SubjectsDTO, Subjects>();
         }
     }
 }

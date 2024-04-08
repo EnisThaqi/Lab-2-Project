@@ -8,6 +8,7 @@ namespace Lab2.Models
         [Key]
         public int Subject_TypeID { get; set; }
         public string Subject_TypeDescription { get; set; }
+        public ICollection<Subjects> subjects { get; set; }
 
     }
 }
