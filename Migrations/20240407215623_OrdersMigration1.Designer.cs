@@ -4,6 +4,7 @@ using Lab2.DataService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lab2.Migrations
 {
     [DbContext(typeof(LabContext))]
-    partial class LabContextModelSnapshot : ModelSnapshot
+    [Migration("20240407215623_OrdersMigration1")]
+    partial class OrdersMigration1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -79,26 +81,7 @@ namespace Lab2.Migrations
 
                     b.HasKey("OrderID");
 
-                    b.HasIndex("SizeID");
-
                     b.ToTable("orders");
-                });
-
-            modelBuilder.Entity("Lab2.Models.PackageSizes", b =>
-                {
-                    b.Property<int>("SizeID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SizeID"), 1L, 1);
-
-                    b.Property<string>("Size")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SizeID");
-
-                    b.ToTable("Packagesizes");
                 });
 
             modelBuilder.Entity("Lab2.Models.Rolet", b =>
@@ -174,17 +157,6 @@ namespace Lab2.Migrations
                     b.HasIndex("RoletID");
 
                     b.ToTable("users");
-                });
-
-            modelBuilder.Entity("Lab2.Models.Orders", b =>
-                {
-                    b.HasOne("Lab2.Models.PackageSizes", "PackageSize")
-                        .WithMany()
-                        .HasForeignKey("SizeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PackageSize");
                 });
 
             modelBuilder.Entity("Lab2.Models.User", b =>

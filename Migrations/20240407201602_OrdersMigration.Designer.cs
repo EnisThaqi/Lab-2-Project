@@ -4,6 +4,7 @@ using Lab2.DataService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lab2.Migrations
 {
     [DbContext(typeof(LabContext))]
-    partial class LabContextModelSnapshot : ModelSnapshot
+    [Migration("20240407201602_OrdersMigration")]
+    partial class OrdersMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,85 +23,6 @@ namespace Lab2.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("Lab2.Models.Orders", b =>
-                {
-                    b.Property<int>("OrderID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderID"), 1L, 1);
-
-                    b.Property<string>("Additional_information")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Can_open")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Is_take_back")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Receiver_Country")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Receiver_Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Receiver_Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Receiver_address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Reference_code")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("SizeID")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("OrderID");
-
-                    b.HasIndex("SizeID");
-
-                    b.ToTable("orders");
-                });
-
-            modelBuilder.Entity("Lab2.Models.PackageSizes", b =>
-                {
-                    b.Property<int>("SizeID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SizeID"), 1L, 1);
-
-                    b.Property<string>("Size")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SizeID");
-
-                    b.ToTable("Packagesizes");
-                });
 
             modelBuilder.Entity("Lab2.Models.Rolet", b =>
                 {
@@ -174,17 +97,6 @@ namespace Lab2.Migrations
                     b.HasIndex("RoletID");
 
                     b.ToTable("users");
-                });
-
-            modelBuilder.Entity("Lab2.Models.Orders", b =>
-                {
-                    b.HasOne("Lab2.Models.PackageSizes", "PackageSize")
-                        .WithMany()
-                        .HasForeignKey("SizeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PackageSize");
                 });
 
             modelBuilder.Entity("Lab2.Models.User", b =>

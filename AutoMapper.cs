@@ -11,6 +11,8 @@ namespace Lab2
             CreateMap<RoletDTO, Rolet>();
             CreateMap<UserDTO, User>();
             CreateMap<SubjectTypeDTO, SubjectType>();
+            CreateMap<OrdersDTO, Orders>();
+            CreateMap<PackageSizesDTO, PackageSizes>();
         }
     }
 }

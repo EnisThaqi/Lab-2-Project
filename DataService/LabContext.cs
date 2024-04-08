@@ -31,7 +31,8 @@ namespace Lab2.DataService
         public DbSet<Rolet> roles { get; set; }
         public DbSet<User> users { get; set; }
         public DbSet<SubjectType> subject_type { get; set; }
-
+        public DbSet<Orders> orders { get; set; }
+        public DbSet<PackageSizes> Packagesizes { get; set; }
 
        protected override void OnModelCreating(ModelBuilder modelBuilder)
        {
