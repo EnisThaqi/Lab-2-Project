@@ -28,6 +28,17 @@ namespace Lab2.Models
         [ForeignKey("PackageSize")]
         public int SizeID { get; set; }
         public PackageSizes PackageSize { get; set; }
+
+
+        [ForeignKey("OrderStatus")]
+        public int StatusID { get; set; }
+        public OrderStatus orderStatus { get; set; }
+
+
+
+
+
+
     }
 }
 

@@ -33,7 +33,11 @@ namespace Lab2.DataService
         public DbSet<SubjectType> subject_type { get; set; }
         public DbSet<Orders> orders { get; set; }
         public DbSet<PackageSizes> Packagesizes { get; set; }
-        public DbSet<Subjects> subjects { get; set; }
+        public DbSet<Subjects> subjects { get; set; } 
+        public DbSet<OrderStatus> orderstatus { get; set; }
+        public DbSet<Routes> routes { get; set; }
+        public DbSet<Vehicles> vehicles { get; set; }
+       
 
 
        protected override void OnModelCreating(ModelBuilder modelBuilder)
