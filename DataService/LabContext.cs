@@ -37,7 +37,9 @@ namespace Lab2.DataService
         public DbSet<OrderStatus> orderstatus { get; set; }
         public DbSet<Routes> routes { get; set; }
         public DbSet<Vehicles> vehicles { get; set; }
-       
+        public DbSet<Subjects> Subjects { get; set; }
+        public DbSet<UserSubjects> user_subjects { get; set; }
+
 
 
        protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -54,6 +56,21 @@ namespace Lab2.DataService
                 .HasOne(s => s.subjectType)
                 .WithMany(st => st.subjects)
                 .HasForeignKey(s => s.Subject_TypeID);
+
+
+            modelBuilder.Entity<UserSubjects>()
+                .HasKey(us => new { us.UserID, us.SubjectID });
+
+            modelBuilder.Entity<UserSubjects>()
+                .HasOne(us => us.user)
+                .WithMany(u => u.userSubjects)
+                .HasForeignKey(us => us.UserID);
+
+            modelBuilder.Entity<UserSubjects>()
+                .HasOne(us => us.subjects)
+                .WithMany(s => s.userSubjects)
+                .HasForeignKey(us => us.SubjectID);
+
         }
     }
 

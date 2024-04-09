@@ -22,5 +22,6 @@ namespace Lab2.Models
         [ForeignKey("Subject_TypeID")]
 
         public SubjectType subjectType { get; set; }
+        public ICollection<UserSubjects> userSubjects { get; set; }
     }
 }

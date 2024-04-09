@@ -19,5 +19,6 @@ namespace Lab2.Models
         [ForeignKey("RoletID")]
 
         public Rolet roles { get; set; }
+        public ICollection<UserSubjects> userSubjects { get; set; }
     }
 }

@@ -17,6 +17,8 @@ namespace Lab2
             CreateMap<OrderStatusDTO, OrderStatus>();
             CreateMap<RoutesDTO, Routes>();
             CreateMap<VehiclesDTO, VehiclesDTO>();
+            CreateMap<UserSubjectsDTO, UserSubjects>();
+
         }
     }
 }
