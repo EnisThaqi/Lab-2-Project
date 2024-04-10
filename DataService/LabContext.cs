@@ -36,7 +36,7 @@ namespace Lab2.DataService
         public DbSet<Subjects> subjects { get; set; } 
         public DbSet<OrderStatus> orderstatus { get; set; }
         public DbSet<Routes> routes { get; set; }
-        public DbSet<Vehicles> vehicles { get; set; }
+        public DbSet<Vehicles> Vehicles { get; set; }
         public DbSet<Subjects> Subjects { get; set; }
         public DbSet<UserSubjects> user_subjects { get; set; }
 
