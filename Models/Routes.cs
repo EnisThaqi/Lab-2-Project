@@ -8,18 +8,15 @@ namespace Lab2.Models
         [Key]
         public int RouteId { get; set; }
         public decimal Distance { get; set; }
-        public TimeSpan Duration { get; set; }
+        public double Duration { get; set; }
         public bool optimal { get; set; }
 
-        [ForeignKey("Orders")]
+        [ForeignKey("Order")]
         public int OrderID { get; set; }
-        public Orders orders { get; set; }
+        public Orders Order { get; set; }
 
-
-        [ForeignKey("Vehicles")]
-        public int VehiclesID { get; set; }
-        public Vehicles vehicles { get; set; }
-
-
+        [ForeignKey("Vehicle")]
+        public int VehicleID { get; set; }
+        public Vehicles Vehicle { get; set; }
     }
 }

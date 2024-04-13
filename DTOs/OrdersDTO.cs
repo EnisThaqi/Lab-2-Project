@@ -25,7 +25,7 @@ namespace Lab2.DTOs
 
 
         
-        public int SizeID { get; set; }
+        public int PackageSizeId { get; set; }
        
 
 

@@ -11,6 +11,6 @@ namespace Lab2.Models
         public DateTime RegisterFrom { get; set; }
         public DateTime RegisterTo { get; set; }
         public bool IsActive { get; set; }
-
+        public ICollection<Routes> Routes { get; set; }
     }
 }
