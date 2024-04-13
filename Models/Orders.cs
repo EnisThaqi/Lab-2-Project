@@ -45,8 +45,6 @@ namespace Lab2.Models
         [ForeignKey("OrderStatus")]
         public int StatusId { get; set; }
         public OrderStatus OrderStatus { get; set; }
-    }
-
         public IList<Routes>? Routes { get; set; }
     }
 }

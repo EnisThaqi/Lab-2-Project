@@ -23,7 +23,7 @@ var connectionString = builder.Configuration.GetConnectionString("SqlServerConne
 // Add the DbContext service with the SQL Server connection
 builder.Services.AddDbContext<LabContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddScoped<UserService, UserService>();
-//builder.Services.AddScoped<IResumePdfService, ResumePDFfile>();
+
 
 
 // Get the MongoDB connection string from appsettings.json
