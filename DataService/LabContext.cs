@@ -83,30 +83,15 @@ namespace Lab2.DataService
                 .WithMany(v => v.Routes)
                 .HasForeignKey(r => r.VehicleID);
 
-            modelBuilder.Entity<Invoice>()
-            .HasOne(inv => inv.subjects)
-            .WithMany(sub => sub.invoices) 
-            .HasForeignKey(inv => inv.SubjectID);
+            //modelBuilder.Entity<Orders>()
+            //  .HasOne(o => o.PackageSize)     // An Order has one PackageSize
+            //.WithMany()                     // A PackageSize can be used in many Orders
+            //.HasForeignKey(o => o.SizeID); // Foreign key from Orders to PackageSizes
 
-            modelBuilder.Entity<InvoiceOrders>()
-            .HasOne(io => io.Invoice)
-            .WithMany(inv => inv.invoiceOrders)
-            .HasForeignKey(io => io.InvoiceId);
-
-            modelBuilder.Entity<InvoiceOrders>()
-                .HasOne(io => io.Orders)
-                .WithMany(ord => ord.invoiceOrders)
-                .HasForeignKey(io => io.OrderId);
-
-            modelBuilder.Entity<Payments>()
-            .HasOne(p => p.Invoice)
-            .WithMany(inv => inv.payments)
-            .HasForeignKey(p => p.InvoiceID);
-
-            modelBuilder.Entity<Payments>()
-                .HasOne(p => p.PaymentMethods)
-                .WithMany(pm => pm.payments)
-                .HasForeignKey(p => p.PaymentMethodsID);
+            // modelBuilder.Entity<Orders>()
+            //   .HasOne(o => o.OrderStatus)     // An Order has one OrderStatus
+            // .WithMany()                     // An OrderStatus can be used in many Orders
+            //.HasForeignKey(o => o.StatusId); ntu daaqin ma von mos tu daqshin i fshin edhe gg
 
         }
     }

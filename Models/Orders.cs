@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Lab2.Models
@@ -37,21 +39,14 @@ namespace Lab2.Models
         public bool Is_take_back { get; set; } = false;
 
         [ForeignKey("PackageSize")]
-        public int SizeID { get; set; }
+        public int PackageSizeId { get; set; }
         public PackageSizes PackageSize { get; set; }
 
         [ForeignKey("OrderStatus")]
         public int StatusId { get; set; }
         public OrderStatus OrderStatus { get; set; }
-
-        public ICollection<InvoiceOrders> invoiceOrders { get; set; }
     }
 
+        public IList<Routes>? Routes { get; set; }
+    }
 }
-
-
-
-
-
-
-
