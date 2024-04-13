@@ -83,16 +83,6 @@ namespace Lab2.DataService
                 .WithMany(v => v.Routes)
                 .HasForeignKey(r => r.VehicleID);
 
-            //modelBuilder.Entity<Orders>()
-            //  .HasOne(o => o.PackageSize)     // An Order has one PackageSize
-            //.WithMany()                     // A PackageSize can be used in many Orders
-            //.HasForeignKey(o => o.SizeID); // Foreign key from Orders to PackageSizes
-
-            // modelBuilder.Entity<Orders>()
-            //   .HasOne(o => o.OrderStatus)     // An Order has one OrderStatus
-            // .WithMany()                     // An OrderStatus can be used in many Orders
-            //.HasForeignKey(o => o.StatusId); ntu daaqin ma von mos tu daqshin i fshin edhe gg
-
         }
     }
 

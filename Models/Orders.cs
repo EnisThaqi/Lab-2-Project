@@ -46,5 +46,7 @@ namespace Lab2.Models
         public int StatusId { get; set; }
         public OrderStatus OrderStatus { get; set; }
         public IList<Routes>? Routes { get; set; }
+        public ICollection<InvoiceOrders> InvoiceOrders { get; set; }
+         
     }
 }
