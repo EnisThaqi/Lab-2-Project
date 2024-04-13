@@ -21,8 +21,8 @@ namespace Lab2.DataService
         {
             if (!optionsBuilder.IsConfigured)
             {
-              optionsBuilder.UseSqlServer(_configuration.GetConnectionString("SqlServerConnection"));
-              //optionsBuilder.UseSqlServer(connectionString);
+                optionsBuilder.UseSqlServer(_configuration.GetConnectionString("SqlServerConnection"));
+                //optionsBuilder.UseSqlServer(connectionString);
             }
         }
 
@@ -33,16 +33,18 @@ namespace Lab2.DataService
         public DbSet<SubjectType> subject_type { get; set; }
         public DbSet<Orders> orders { get; set; }
         public DbSet<PackageSizes> Packagesizes { get; set; }
-        public DbSet<Subjects> subjects { get; set; } 
+        public DbSet<Subjects> subjects { get; set; }
         public DbSet<OrderStatus> orderstatus { get; set; }
         public DbSet<Routes> routes { get; set; }
         public DbSet<Vehicles> Vehicles { get; set; }
         public DbSet<Subjects> Subjects { get; set; }
         public DbSet<UserSubjects> user_subjects { get; set; }
+        public DbSet<Invoice> invoices { get; set; }
+        public DbSet<InvoiceOrders> invoiceorders { get; set; }
+        public DbSet<Payments> payments { get; set; }
+        public DbSet<PaymentMethods> paymentmethods { get; set; }
 
-
-
-       protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
        {
             base.OnModelCreating(modelBuilder);
 
@@ -70,6 +72,41 @@ namespace Lab2.DataService
                 .HasOne(us => us.subjects)
                 .WithMany(s => s.userSubjects)
                 .HasForeignKey(us => us.SubjectID);
+
+            modelBuilder.Entity<Routes>()
+                .HasOne(r => r.Order)
+                .WithMany(o => o.Routes)
+                .HasForeignKey(r => r.OrderID);
+
+            modelBuilder.Entity<Routes>()
+                .HasOne(r => r.Vehicle)
+                .WithMany(v => v.Routes)
+                .HasForeignKey(r => r.VehicleID);
+
+            modelBuilder.Entity<Invoice>()
+            .HasOne(inv => inv.subjects)
+            .WithMany(sub => sub.invoices) 
+            .HasForeignKey(inv => inv.SubjectID);
+
+            modelBuilder.Entity<InvoiceOrders>()
+            .HasOne(io => io.Invoice)
+            .WithMany(inv => inv.invoiceOrders)
+            .HasForeignKey(io => io.InvoiceId);
+
+            modelBuilder.Entity<InvoiceOrders>()
+                .HasOne(io => io.Orders)
+                .WithMany(ord => ord.invoiceOrders)
+                .HasForeignKey(io => io.OrderId);
+
+            modelBuilder.Entity<Payments>()
+            .HasOne(p => p.Invoice)
+            .WithMany(inv => inv.payments)
+            .HasForeignKey(p => p.InvoiceID);
+
+            modelBuilder.Entity<Payments>()
+                .HasOne(p => p.PaymentMethods)
+                .WithMany(pm => pm.payments)
+                .HasForeignKey(p => p.PaymentMethodsID);
 
         }
     }

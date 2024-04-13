@@ -23,5 +23,7 @@ namespace Lab2.Models
 
         public SubjectType subjectType { get; set; }
         public ICollection<UserSubjects> userSubjects { get; set; }
+        public ICollection<Invoice> invoices { get; set; }
+
     }
 }

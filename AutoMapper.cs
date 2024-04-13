@@ -1,12 +1,12 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Lab2.DTOs;
 using Lab2.Models;
 
 namespace Lab2
 {
-    public class AutoMapper : Profile
+    public class AutoMapperProfile : Profile
     {
-        public AutoMapper()
+        public AutoMapperProfile()
         {
             CreateMap<RoletDTO, Rolet>();
             CreateMap<UserDTO, User>();
@@ -19,6 +19,10 @@ namespace Lab2
             CreateMap<VehiclesDTO, Vehicles>();
             CreateMap<UserSubjectsDTO, UserSubjects>();
 
+            CreateMap<InvoiceDTO, Invoice>();
+            CreateMap<InvoiceOrderDTO, InvoiceOrders>();
+            CreateMap<PaymentsDTO, Payments>();
+            CreateMap<PaymentMethodsDTO, PaymentMethods>();
         }
     }
 }
