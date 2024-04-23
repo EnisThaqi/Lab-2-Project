@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Lab2.Controllers;
 using Lab2.DataService;
+using Lab2.Models;
+using Lab2.ModelsMongo;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 using Microsoft.Extensions.Options;
@@ -27,8 +29,9 @@ builder.Services.AddScoped<UserService, UserService>();
 
 
 // Get the MongoDB connection string from appsettings.json
-var mongoConnectionString = builder.Configuration.GetConnectionString("MongoDBConnection");
-MongoClient mongoClient = new MongoClient(mongoConnectionString);
+builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
+builder.Services.AddSingleton<MongoDBContext>();
+
 
 
 var app = builder.Build();
