@@ -12,7 +12,7 @@ public class MongoDBContext
     private readonly IMongoCollection<UserNotifications> _UserNotificationsCollection;
     private readonly IMongoCollection<Ticket> _TicketCollection;
     private readonly IMongoCollection<TicketComments> _TicketCommentsCollection;
-
+    private readonly IMongoCollection<TicketAttachments> _TicketAttachmentsCollection;
     public MongoDBContext(IOptions<MongoDBSettings> mongoDBSettings)
     {
         MongoClient client = new MongoClient(mongoDBSettings.Value.ConnectionURI);
@@ -22,6 +22,7 @@ public class MongoDBContext
         _UserNotificationsCollection = database1.GetCollection<UserNotifications>("UserNotifications");
         _TicketCollection = database1.GetCollection<Ticket>(mongoDBSettings.Value.CollectionName);
         _TicketCommentsCollection = database1.GetCollection<TicketComments>("TicketComments");
+        _TicketAttachmentsCollection = database1.GetCollection<TicketAttachments>("TicketAttachments");
 
     }
     public async Task CreateAsync(NotificationsType notificationsType)
@@ -158,5 +159,39 @@ public class MongoDBContext
         await _TicketCommentsCollection.DeleteOneAsync(Builders<TicketComments>.Filter.Eq("TicketCommentsID", ticketcommentsID));
         return;
     }
+
+    //TicketAttachments
+    public async Task CreateTicketAttachmentsAsync(TicketAttachments ticketattachments)
+    {
+        await _TicketAttachmentsCollection.InsertOneAsync(ticketattachments);
+        return;
+    }
+    public async Task<List<TicketAttachments>> GetTicketAttachmentsAsync()
+    {
+        return await _TicketAttachmentsCollection.Find(new BsonDocument()).ToListAsync();
+    }
+    public async Task<TicketAttachments> GetTicketAttachmentsByIDAsync(string ticketattachmentsID)
+    {
+        return await _TicketAttachmentsCollection.Find(x => x.TicketAttachmentsID == ticketattachmentsID).FirstOrDefaultAsync();
+    }
+    public async Task AddToTicketAttachmentsAsync(string TicketAttachmentsID, byte[] File, string? Description,DateTime CreatedAt)
+    {
+        FilterDefinition<TicketAttachments> filter = Builders<TicketAttachments>.Filter.Eq("TicketAttachmentsID", TicketAttachmentsID);
+        UpdateDefinition<TicketAttachments> update = Builders<TicketAttachments>.Update
+            .Set("File", File)
+            .Set("Description", Description)
+            .Set("CreatedAt", CreatedAt);
+
+
+
+        await _TicketAttachmentsCollection.UpdateOneAsync(filter, update);
+        return;
+    }
+    public async Task DeleteTicketAttachmentsAsync(string ticketattachmentsID)
+    {
+        await _TicketAttachmentsCollection.DeleteOneAsync(Builders<TicketAttachments>.Filter.Eq("TicketAttachmentsID", ticketattachmentsID));
+        return;
+    }
+   
 
 }
