@@ -9,13 +9,14 @@ public class MongoDBContext
 {
     private readonly IMongoCollection<NotificationsType> _NotificationsTypeCollection;
     private readonly IMongoCollection<Notifications> _NotificationsCollection;
-
+    private readonly IMongoCollection<UserNotifications> _UserNotificationsCollection;
     public MongoDBContext(IOptions<MongoDBSettings> mongoDBSettings)
     {
         MongoClient client = new MongoClient(mongoDBSettings.Value.ConnectionURI);
         IMongoDatabase database1 = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
         _NotificationsTypeCollection = database1.GetCollection<NotificationsType>(mongoDBSettings.Value.CollectionName);
         _NotificationsCollection = database1.GetCollection<Notifications>("Notifications");
+        _UserNotificationsCollection = database1.GetCollection<UserNotifications>("UserNotifications");
 
     }
     public async Task CreateAsync(NotificationsType notificationsType)
@@ -69,6 +70,34 @@ public class MongoDBContext
     public async Task DeleteNotificationsAsync(string notificationsID)
     {
         await _NotificationsCollection.DeleteOneAsync(Builders<Notifications>.Filter.Eq("NotificationID", notificationsID));
+        return;
+    }
+
+    //UserNotifications
+    public async Task CreateUserNotificationsAsync(UserNotifications usernotifications)
+    {
+        await _UserNotificationsCollection.InsertOneAsync(usernotifications);
+        return;
+    }
+
+    public async Task<List<UserNotifications>> GetUserNotificationsAsync()
+    {
+        return await _UserNotificationsCollection.Find(new BsonDocument()).ToListAsync();
+    }
+    public async Task<UserNotifications> GetUserNotificationsByIDAsync(string usernotificationsID)
+    {
+        return await _UserNotificationsCollection.Find(x => x.UserNotificationsID == usernotificationsID).FirstOrDefaultAsync();
+    }
+
+    public async Task UpdateUserNotificationsAsync(string usernotificationsID, UpdateDefinition<UserNotifications> update)
+    {
+        await _UserNotificationsCollection.UpdateOneAsync(
+            Builders<UserNotifications>.Filter.Eq("UserNotificationsID", usernotificationsID), update);
+    }
+
+    public async Task DeleteUserNotificationsAsync(string usernotificationsID)
+    {
+        await _UserNotificationsCollection.DeleteOneAsync(Builders<UserNotifications>.Filter.Eq("UserNotificationID", usernotificationsID));
         return;
     }
 }
