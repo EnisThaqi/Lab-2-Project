@@ -10,6 +10,9 @@ public class MongoDBContext
     private readonly IMongoCollection<NotificationsType> _NotificationsTypeCollection;
     private readonly IMongoCollection<Notifications> _NotificationsCollection;
     private readonly IMongoCollection<UserNotifications> _UserNotificationsCollection;
+    private readonly IMongoCollection<Ticket> _TicketCollection;
+    private readonly IMongoCollection<TicketComments> _TicketCommentsCollection;
+
     public MongoDBContext(IOptions<MongoDBSettings> mongoDBSettings)
     {
         MongoClient client = new MongoClient(mongoDBSettings.Value.ConnectionURI);
@@ -17,6 +20,8 @@ public class MongoDBContext
         _NotificationsTypeCollection = database1.GetCollection<NotificationsType>(mongoDBSettings.Value.CollectionName);
         _NotificationsCollection = database1.GetCollection<Notifications>("Notifications");
         _UserNotificationsCollection = database1.GetCollection<UserNotifications>("UserNotifications");
+        _TicketCollection = database1.GetCollection<Ticket>(mongoDBSettings.Value.CollectionName);
+        _TicketCommentsCollection = database1.GetCollection<TicketComments>("TicketComments");
 
     }
     public async Task CreateAsync(NotificationsType notificationsType)
@@ -100,4 +105,58 @@ public class MongoDBContext
         await _UserNotificationsCollection.DeleteOneAsync(Builders<UserNotifications>.Filter.Eq("UserNotificationID", usernotificationsID));
         return;
     }
+
+    //Ticket
+
+    public async Task CreateTicketAsync(Ticket ticket)
+    {
+        await _TicketCollection.InsertOneAsync(ticket);
+        return;
+    }
+
+    public async Task<List<Ticket>> GetTicketAsync()
+    {
+        return await _TicketCollection.Find(new BsonDocument()).ToListAsync();
+    }
+    public async Task<Ticket> GetTicketByIDAsync(string ticketID)
+    {
+        return await _TicketCollection.Find(x => x.TicketID == ticketID).FirstOrDefaultAsync();
+    }
+    public async Task UpdateTicketAsync(string ticketID, UpdateDefinition<Ticket> update)
+    {
+        await _TicketCollection.UpdateOneAsync(
+            Builders<Ticket>.Filter.Eq("TicketID", ticketID), update);
+    }
+    public async Task DeleteTicketAsync(string ticketID)
+    {
+        await _TicketCollection.DeleteOneAsync(Builders<Ticket>.Filter.Eq("TicketID", ticketID));
+        return;
+    }
+
+    //TicketComments
+
+    public async Task CreateTicketCommentsAsync(TicketComments ticketcomments)
+    {
+        await _TicketCommentsCollection.InsertOneAsync(ticketcomments);
+        return;
+    }
+    public async Task<List<TicketComments>> GetTicketCommentsAsync()
+    {
+        return await _TicketCommentsCollection.Find(new BsonDocument()).ToListAsync();
+    }
+    public async Task<TicketComments> GetTicketCommentsByIDAsync(string ticketcommentsID)
+    {
+        return await _TicketCommentsCollection.Find(x => x.TicketCommentsID == ticketcommentsID).FirstOrDefaultAsync();
+    }
+    public async Task UpdateTicketCommentsAsync(string ticketcommentsID, UpdateDefinition<TicketComments> update)
+    {
+        await _TicketCommentsCollection.UpdateOneAsync(
+            Builders<TicketComments>.Filter.Eq("TicketCommentsID", ticketcommentsID), update);
+    }
+    public async Task DeleteTicketCommentsAsync(string ticketcommentsID)
+    {
+        await _TicketCommentsCollection.DeleteOneAsync(Builders<TicketComments>.Filter.Eq("TicketCommentsID", ticketcommentsID));
+        return;
+    }
+
 }
