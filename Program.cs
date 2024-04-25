@@ -33,6 +33,14 @@ builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("Mo
 builder.Services.AddSingleton<MongoDBContext>();
 
 
+// Enable Cors
+builder.Services.AddCors(p => p.AddPolicy("", build =>
+{
+    build.WithOrigins("").AllowAnyMethod().AllowAnyHeader();
+}));
+// enable single domain
+// multiple domain
+// any domain
 
 var app = builder.Build();
 
@@ -42,6 +50,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("");
 
 app.UseHttpsRedirection();
 
