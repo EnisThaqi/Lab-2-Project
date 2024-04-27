@@ -7,7 +7,7 @@ import Sidebar from './components/Sidebar';
 
 function App() {
   return (
-    <div className='container fluid' >
+    <div >
       <div className='row'>
         <div className='col-2'></div>
       </div>
