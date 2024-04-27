@@ -7,11 +7,15 @@ import Sidebar from './components/Sidebar';
 
 function App() {
   return (
-    <div >
+    <div className='bg-secondary min-vh-100'>
       <div className='row'>
-        <div className='col-2'></div>
+        <div className='col-2 bg-white vh-100'>
+        <Sidebar />
+        </div>
+        <div className='col-auto'>
+
+        </div>
       </div>
-      <Sidebar />
     </div>
   );
 }
