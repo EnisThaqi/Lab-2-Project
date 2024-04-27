@@ -17,5 +17,3 @@ function App() {
 }
 
 export default App;
-//<TestComponent name={"Enisi"} lastname="Thaqi"/>
-//import TestComponent from './components/TestComponent';
