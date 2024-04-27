@@ -1,42 +1,43 @@
-import React from 'react'
-import './style.css'
-
+// Sidebar.js
+import React from 'react';
+import './style.css';
 
 function Sidebar() {
     return (
-        <div className='bg-white sidebar p-2'>
-            <div className='m-2'>
-                <i className='bi bi-truck me-3 fs-4'></i>
-                <span className='brand-name fs-4'>Postify</span>
-            </div>        
-            <hr className='text-dark' />
-            <div className='list-group list-group-flush'>
-                <a className='list-group-item py-2'>
-                    <i className='bi bi-speedometer2 fs-5 me-3'></i>
-                    <span className='fs-5'>Dashboard</span>            
+        <div className='sidebar'>
+            <div className='brand'>
+                <i className='bi bi-truck me-2'></i>
+                <span>Postify</span>
+            </div>
+            <hr />
+            <div className='menu'>
+                <a href='#' className='menu-item active'>
+                    <i className='bi bi-speedometer2 me-2'></i>
+                    <span>Dashboard</span>
                 </a>
-                <a className='list-group-item py-2'>
-                    <i className='bi bi-house fs-5 me-3'></i>
-                    <span className='fs-5'>Home</span>            
+                <a href='#' className='menu-item'>
+                    <i className='bi bi-house me-2'></i>
+                    <span>Home</span>
                 </a>
-                <a className='list-group-item py-2'>
-                    <i className='bi bi-table fs-5 me-3'></i>
-                    <span className='fs-5'>Products</span>
+                <a href='#' className='menu-item'>
+                    <i className='bi bi-table me-2'></i>
+                    <span>Products</span>
                 </a>
-                <a className='list-group-item py-2'>
-                    <i className='bi bi-clipboard-data fs-5 me-3'></i>
-                    <span className='fs-5'>Report</span>
+                <a href='#' className='menu-item'>
+                    <i className='bi bi-clipboard-data me-2'></i>
+                    <span>Report</span>
                 </a>
-                <a className='list-group-item py-2'>
-                    <i className='bi bi-people fs-5 me-3'></i>
-                    <span className='fs-5'>Customers</span>
+                <a href='#' className='menu-item'>
+                    <i className='bi bi-people me-2'></i>
+                    <span>Customers</span>
                 </a>
-                <a className='list-group-item py-2'>
-                    <i className='bi bi-power fs-5 me-3'></i>
-                    <span >Logout</span>
+                <a href='#' className='menu-item logout'>
+                    <i className='bi bi-power me-2'></i>
+                    <span>Logout</span>
                 </a>
-            </div>    
+            </div>
         </div>
-    )
+    );
 }
-export default Sidebar 
+
+export default Sidebar;
