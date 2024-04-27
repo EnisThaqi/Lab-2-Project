@@ -64,7 +64,7 @@
     border-left: 4px solid #dc3545;
 }
 
-/* Nav.js */
+
 .navbar {
     padding: 10px 15px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -76,6 +76,6 @@
 .navbar-brand {
     font-size: 1.5rem;
     color: #333333;
-    cursor: pointer; /* Change cursor to indicate interactivity */
+    cursor: pointer; 
 }
 
