@@ -51,7 +51,7 @@
 }
 
 .menu-item:not(.logout):hover {
-    border-left: 4px solid #007bff;
+    border-left: 4px solid #0b0c0c;
 }
 
 .logout {
