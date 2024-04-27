@@ -30,11 +30,8 @@ function Sidebar() {
                 <a href='#' className='menu-item'>
                     <i className='bi bi-people me-2'></i>
                     <span>Customers</span>
-                </a>
-                <a href='#' className='menu-item logout'>
-                    <i className='bi bi-power me-2'></i>
-                    <span>Logout</span>
-                </a>
+                    </a>
+              
             </div>
         </div>
     );

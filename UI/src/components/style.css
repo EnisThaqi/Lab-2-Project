@@ -79,6 +79,3 @@
     cursor: pointer; /* Change cursor to indicate interactivity */
 }
 
-.dropdown-item.logout {
-    color: #dc3545;
-}
