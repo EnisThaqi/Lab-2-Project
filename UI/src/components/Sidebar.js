@@ -8,7 +8,7 @@ function Sidebar() {
         <div className='bg-white sidebar p-2'>
             <div className='m-2'>
                 <i className='bi bi-truck me-3 fs-4'></i>
-                <span className='brand-name fs-4'>Positfy</span>
+                <span className='brand-name fs-4'>Postify</span>
             </div>        <hr className='text-dark' />
             <div className='list-group list-group-flush'>
                 <a className='list-group-item py-2'>
