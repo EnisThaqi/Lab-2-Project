@@ -8,14 +8,14 @@ import { useState } from "react";
 
 
 function App() {
-  const [toggle, setoggle] = useState(true)
+  const [toggle, setToggle] = useState(true)
   const Toggle = () => {
-    setoggle(!toggle)
+    setToggle(!toggle)
   }
   return (
-    <div className='bg-ngjyra? min-vh-100'>
+    <div className='bg-custom'>
       <div className='row'>
-       {toggle && <div className='col-2 bg-white vh-100'>
+       {toggle && <div className='col-2'>
         <Sidebar />
         </div>}
         <div className='col'>

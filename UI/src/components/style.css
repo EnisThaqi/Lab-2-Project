@@ -79,3 +79,8 @@
     cursor: pointer; 
 }
 
+.bg-custom{
+    background-color: #f0f0f0;
+    min-height: 100vh;
+}
+
