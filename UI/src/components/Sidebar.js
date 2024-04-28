@@ -12,26 +12,45 @@ function Sidebar() {
             <hr />
             <div className='menu'>
                 <a href='#' className='menu-item active'>
-                    <i className='bi bi-speedometer2 me-2'></i>
-                    <span>Dashboard</span>
-                </a>
-                <a href='#' className='menu-item'>
                     <i className='bi bi-house me-2'></i>
-                    <span>Home</span>
-                </a>
-                <a href='#' className='menu-item'>
-                    <i className='bi bi-table me-2'></i>
-                    <span>Products</span>
-                </a>
-                <a href='#' className='menu-item'>
-                    <i className='bi bi-clipboard-data me-2'></i>
-                    <span>Report</span>
+                    <span>Ballina</span>
                 </a>
                 <a href='#' className='menu-item'>
                     <i className='bi bi-people me-2'></i>
-                    <span>Customers</span>
-                    </a>
-              
+                    <span>Klientet</span>
+                </a>
+                <a href='#' className='menu-item'>
+                    <i className='bi bi-person-add me-2'></i>
+                    <span>Regjistro Klient</span>
+                </a>
+                <a href='#' className='menu-item'>
+                    <i className='bi bi-people me-2'></i>
+                    <span>Perdoruesit</span>
+                </a>
+                <a href='#' className='menu-item'>
+                    <i className='bi bi-person-add me-2'></i>
+                    <span>Regjistro Perdoruesit</span>
+                </a>
+                <a href='#' className='menu-item'>
+                    <i className='bi bi-person-add me-2'></i>
+                    <span>Logjistika</span>
+                </a>
+                <a href='#' className='menu-item'>
+                    <i className='bi bi-bank me-2'></i>
+                    <span>Financat</span>
+                </a>
+                <a href='#' className='menu-item'>
+                    <i className='bi bi-graph-up me-2'></i>
+                    <span>Analitika</span>
+                </a>
+                <a href='#' className='menu-item'>
+                    <i className='bi bi-bag-check me-2'></i>
+                    <span>Porosite</span>
+                </a>
+                <a href='#' className='menu-item'>
+                    <i className='bi bi-bell me-2'></i>
+                    <span>Notifications</span>
+                </a>
             </div>
         </div>
     );

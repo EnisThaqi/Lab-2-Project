@@ -13,7 +13,7 @@ function App() {
     setoggle(!toggle)
   }
   return (
-    <div className='bg-secondary min-vh-100'>
+    <div className='bg-ngjyra? min-vh-100'>
       <div className='row'>
        {toggle && <div className='col-2 bg-white vh-100'>
         <Sidebar />
