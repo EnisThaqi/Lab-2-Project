@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Lab2.DataService;
 using Lab2.DTOs;
 using Lab2.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Lab2.Controllers
 {
@@ -50,6 +51,21 @@ namespace Lab2.Controllers
             }
 
             return Ok(Subjects);
+        }
+
+        [HttpGet("get-all")]
+        public async Task<IActionResult> GetAllSubjects()
+        {
+            var subjects = await _context.subjects.ToListAsync(); // Use ToListAsync for async fetching
+
+            if (subjects == null || subjects.Count == 0) // Check for empty results
+            {
+                return NotFound("No subjects found.");
+            }
+
+            var SubjectsDTO = _mapper.Map<List<SubjectsDTO>>(subjects); // Correct mapping
+
+            return Ok(SubjectsDTO); // Return mapped DTOs with 200 OK
         }
 
         [HttpPut("update/{id}")]
