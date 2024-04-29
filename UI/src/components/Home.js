@@ -6,7 +6,6 @@ function Home({Toggle}){
     return(
         <div className='px-3'>
             <Nav Toggle={Toggle}/>
-
         </div>
     )
 }
