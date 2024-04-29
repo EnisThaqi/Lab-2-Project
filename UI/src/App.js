@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Home from './components/Home';
 import { useState } from "react";
-import Klientet from "./components/pages/Klientet";
-
+import Klientet from './components/pages/Klientet';
+import Notifications from './components/pages/Notifications';
 
 
 
@@ -17,20 +17,23 @@ function App() {
   }
   return (
     <Router>
-    <div className='bg-custom'>
-      <div className='row'>
-       {toggle && <div className='col-2'>
-        <Sidebar />
-        </div>}
-        <div className='col'>
+      <div>
+        <div>
           
-          <Routes>
-          <Route exact path='/' element={<Home Toggle={Toggle} />}/>
-          <Route exact path='/Klientet' element={<Klientet Toggle={Toggle}/>}/>
-          </Routes>
+          {/* {toggle && <div className='col-2'>
+        
+        </div>} */}
+          <div>
+            <Sidebar>
+              <Routes>
+                <Route exact path='/' element={<Home Toggle={Toggle} />} />
+                <Route exact path='/Klientet' element={<Klientet Toggle={Toggle} />} />
+                <Route excat path='/Notifications' element={<Notifications Toggle={Toggle} />} />
+              </Routes>
+            </Sidebar>
+          </div>
         </div>
       </div>
-    </div>
     </Router>
   );
 }

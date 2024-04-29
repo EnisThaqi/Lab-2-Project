@@ -13,7 +13,7 @@ namespace Lab2
             CreateMap<SubjectTypeDTO, SubjectType>();
             CreateMap<OrdersDTO, Orders>();
             CreateMap<PackageSizesDTO, PackageSizes>();
-            CreateMap<SubjectsDTO, Subjects>();
+            CreateMap<SubjectsDTO, Subjects>().ReverseMap();
             CreateMap<OrderStatusDTO, OrderStatus>();
             CreateMap<RoutesDTO, Routes>();
             CreateMap<VehiclesDTO, Vehicles>();
