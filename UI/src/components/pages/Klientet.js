@@ -24,8 +24,8 @@ const Klientet = (props) => {
     }
     return (
         <>
-            {
-                subjects && subjects?.map(item => (
+            
+                
                     
                     <>
                         <div>
@@ -36,7 +36,7 @@ const Klientet = (props) => {
                 <thead>
                     <tr> {/* Table headers */}
                         <th>ID</th>
-                        <th>Emri Kliertit</th>
+                        <th>Emri Klientit</th>
                         <th>Business Number</th>
                         <th>VAT Number</th>
                         <th>Email</th>
@@ -66,8 +66,8 @@ const Klientet = (props) => {
             </table>
         </div>
                     </>
-                ))
-            }
+            
+            
         </>
     )
 }
