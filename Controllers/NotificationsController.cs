@@ -54,7 +54,7 @@ public class NotificationsController : Controller
     {
         var update = Builders<Notifications>.Update
             .Set("Message", notifications.Message)
-            .Set("CreatedAT", notifications.CreatedAt)
+            .Set("CreatedAt", notifications.CreatedAt)
             .Set("UserID", notifications.UserID);
 
         await _mongoDBContext.UpdateNotificationsAsync(id, update);
