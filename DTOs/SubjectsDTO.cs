@@ -2,7 +2,7 @@
 {
     public class SubjectsDTO
     {
-        public int? SubjectsID { get; set; }
+        public int SubjectID { get; set; }
         public string SubjectName { get; set; }
         public string BussinesNr { get; set; }
         public string VATnr { get; set; }

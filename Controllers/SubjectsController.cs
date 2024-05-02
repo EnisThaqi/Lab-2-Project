@@ -71,7 +71,7 @@ namespace Lab2.Controllers
         [HttpPut("update/{id}")]
         public async Task<IActionResult> UpdateSubjects(int id, [FromBody] SubjectsDTO updatedSubjectsDTO)
         {
-            if (updatedSubjectsDTO == null || id != updatedSubjectsDTO.SubjectsID)
+            if (updatedSubjectsDTO == null || id != updatedSubjectsDTO.SubjectID)
             {
                 return BadRequest("Invalid data or mismatched id");
             }
