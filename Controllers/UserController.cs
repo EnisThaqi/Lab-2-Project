@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Lab2.DataService;
 using Lab2.DTOs;
 using Lab2.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Lab2.Controllers
 {
@@ -50,6 +51,21 @@ namespace Lab2.Controllers
             }
 
             return Ok(User);
+        }
+
+        [HttpGet("get-all")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var User = await _context.users.ToListAsync();
+
+            if (User == null || User.Count == 0)
+            {
+                return NotFound("No users found.");
+            }
+
+            var UserDTO = _mapper.Map<List<UserDTO>>(User);
+
+            return Ok(UserDTO); 
         }
 
         [HttpPut("update/{id}")]

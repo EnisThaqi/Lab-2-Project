@@ -7,6 +7,7 @@ import Home from './components/Home';
 import { useState } from "react";
 import Klientet from './components/pages/Klientet';
 import Notifications from './components/pages/Notifications';
+import Perdoruesit from "./components/pages/Perdoruesit";
 
 
 
@@ -28,7 +29,9 @@ function App() {
               <Routes>
                 <Route exact path='/' element={<Home Toggle={Toggle} />} />
                 <Route exact path='/Klientet' element={<Klientet Toggle={Toggle} />} />
+                <Route exact path='/Perdoruesit' element={<Perdoruesit Toggle={Toggle} />} />
                 <Route excat path='/Notifications' element={<Notifications Toggle={Toggle} />} />
+
               </Routes>
             </Sidebar>
           </div>

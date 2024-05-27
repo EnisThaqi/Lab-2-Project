@@ -9,7 +9,7 @@ namespace Lab2
         public AutoMapperProfile()
         {
             CreateMap<RoletDTO, Rolet>();
-            CreateMap<UserDTO, User>();
+            CreateMap<UserDTO, User>().ReverseMap();
             CreateMap<SubjectTypeDTO, SubjectType>();
             CreateMap<OrdersDTO, Orders>();
             CreateMap<PackageSizesDTO, PackageSizes>();
