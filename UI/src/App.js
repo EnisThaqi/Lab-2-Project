@@ -8,7 +8,7 @@ import { useState } from "react";
 import Klientet from './components/pages/Klientet';
 import Notifications from './components/pages/Notifications';
 import Perdoruesit from "./components/pages/Perdoruesit";
-
+import RegjistoKlientet from "./components/pages/RegjistoKlientet";
 
 
 function App() {
@@ -29,6 +29,7 @@ function App() {
               <Routes>
                 <Route exact path='/' element={<Home Toggle={Toggle} />} />
                 <Route exact path='/Klientet' element={<Klientet Toggle={Toggle} />} />
+                <Route exact path='/Regjistro-klientet' element={<RegjistoKlientet Toggle={Toggle} />} />
                 <Route exact path='/Perdoruesit' element={<Perdoruesit Toggle={Toggle} />} />
                 <Route excat path='/Notifications' element={<Notifications Toggle={Toggle} />} />
 
