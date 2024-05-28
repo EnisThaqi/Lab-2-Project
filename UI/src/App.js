@@ -10,6 +10,7 @@ import Lajmerimet from './components/pages/Lajmerimet';
 import Perdoruesit from "./components/pages/Perdoruesit";
 import RegjistoKlientet from "./components/pages/RegjistoKlientet";
 import Porosite from "./components/pages/Porosite";
+import RegjistroPerdoruesit from "./components/pages/RegjistroPerdoruesit";
 
 
 
@@ -35,6 +36,7 @@ function App() {
                 <Route exact path='/Perdoruesit' element={<Perdoruesit Toggle={Toggle} />} />
                 <Route excat path='/Lajmerimet' element={<Lajmerimet Toggle={Toggle} />} />
                 <Route excat path='/Porosite' element={<Porosite Toggle={Toggle} />} />
+                <Route excat path='/Regjistro-perdoruesit' element={<RegjistroPerdoruesit Toggle={Toggle} />} />
 
               </Routes>
             </Sidebar>
