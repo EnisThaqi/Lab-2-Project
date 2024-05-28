@@ -44,12 +44,12 @@ namespace Lab2.Controllers
 
 
 
-            if (User == null)
+            if (Orders == null)
             {
                 return NotFound();
             }
 
-            return Ok(User);
+            return Ok(Orders);
         }
 
         [HttpPut("update/{id}")]
