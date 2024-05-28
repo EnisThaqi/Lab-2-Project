@@ -9,6 +9,8 @@ import Klientet from './components/pages/Klientet';
 import Notifications from './components/pages/Notifications';
 import Perdoruesit from "./components/pages/Perdoruesit";
 import RegjistoKlientet from "./components/pages/RegjistoKlientet";
+import Porosite from "./components/pages/Porosite";
+
 
 
 function App() {
@@ -32,6 +34,7 @@ function App() {
                 <Route exact path='/Regjistro-klientet' element={<RegjistoKlientet Toggle={Toggle} />} />
                 <Route exact path='/Perdoruesit' element={<Perdoruesit Toggle={Toggle} />} />
                 <Route excat path='/Notifications' element={<Notifications Toggle={Toggle} />} />
+                <Route excat path='/Porosite' element={<Porosite Toggle={Toggle} />} />
 
               </Routes>
             </Sidebar>

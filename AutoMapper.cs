@@ -11,7 +11,7 @@ namespace Lab2
             CreateMap<RoletDTO, Rolet>();
             CreateMap<UserDTO, User>().ReverseMap();
             CreateMap<SubjectTypeDTO, SubjectType>();
-            CreateMap<OrdersDTO, Orders>();
+            CreateMap<OrdersDTO, Orders>().ReverseMap();
             CreateMap<PackageSizesDTO, PackageSizes>();
             CreateMap<SubjectsDTO, Subjects>().ReverseMap();
             CreateMap<OrderStatusDTO, OrderStatus>();
