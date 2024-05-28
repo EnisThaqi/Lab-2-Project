@@ -13,7 +13,7 @@ namespace Lab2.ModelsMongo
         [BsonElement("Message")]
         public string? Message { get; set; } = null!;
 
-        [BsonElement("CreatedAt")]
+        [BsonElement("CreatedAT")]
         public DateTime CreatedAt { get; set; }
 
         [BsonElement("NotificationsTypeID")]
