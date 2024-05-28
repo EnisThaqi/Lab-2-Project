@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using MongoDB.Bson;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Lab2.DataService;
 
@@ -13,6 +15,9 @@ public class MongoDBContext
     private readonly IMongoCollection<Ticket> _TicketCollection;
     private readonly IMongoCollection<TicketComments> _TicketCommentsCollection;
     private readonly IMongoCollection<TicketAttachments> _TicketAttachmentsCollection;
+    private readonly IMongoCollection<UserFeedback> _UserFeedbackCollection;
+    private readonly IMongoCollection<ShippingReport> _ShippingReportCollection;
+    private readonly IMongoCollection<Tracking> _TrackingCollection;
     public MongoDBContext(IOptions<MongoDBSettings> mongoDBSettings)
     {
         MongoClient client = new MongoClient(mongoDBSettings.Value.ConnectionURI);
@@ -23,6 +28,9 @@ public class MongoDBContext
         _TicketCollection = database1.GetCollection<Ticket>(mongoDBSettings.Value.CollectionName);
         _TicketCommentsCollection = database1.GetCollection<TicketComments>("TicketComments");
         _TicketAttachmentsCollection = database1.GetCollection<TicketAttachments>("TicketAttachments");
+        _UserFeedbackCollection = database1.GetCollection<UserFeedback>("UserFeedback");
+        _ShippingReportCollection = database1.GetCollection<ShippingReport>("ShippingReport");
+        _TrackingCollection = database1.GetCollection<Tracking>("Tracking");
 
     }
     public async Task CreateAsync(NotificationsType notificationsType)
@@ -192,6 +200,88 @@ public class MongoDBContext
         await _TicketAttachmentsCollection.DeleteOneAsync(Builders<TicketAttachments>.Filter.Eq("TicketAttachmentsID", ticketattachmentsID));
         return;
     }
-   
 
+    // UserFeedback
+    public async Task CreateUserFeedbackAsync(UserFeedback userFeedback)
+    {
+        await _UserFeedbackCollection.InsertOneAsync(userFeedback);
+    }
+
+    public async Task<List<UserFeedback>> GetUserFeedbackAsync()
+    {
+        return await _UserFeedbackCollection.Find(new BsonDocument()).ToListAsync();
+    }
+
+    public async Task<UserFeedback> GetUserFeedbackByIDAsync(string feedbackID)
+    {
+        return await _UserFeedbackCollection.Find(x => x.FeedbackID == feedbackID).FirstOrDefaultAsync();
+    }
+
+    public async Task UpdateUserFeedbackAsync(string feedbackID, UpdateDefinition<UserFeedback> update)
+    {
+        await _UserFeedbackCollection.UpdateOneAsync(
+            Builders<UserFeedback>.Filter.Eq("FeedbackID", feedbackID), update);
+    }
+
+    public async Task DeleteUserFeedbackAsync(string feedbackID)
+    {
+        await _UserFeedbackCollection.DeleteOneAsync(
+            Builders<UserFeedback>.Filter.Eq("FeedbackID", feedbackID));
+    }
+
+    // ShippingReport
+    public async Task CreateShippingReportAsync(ShippingReport shippingReport)
+    {
+        await _ShippingReportCollection.InsertOneAsync(shippingReport);
+    }
+
+    public async Task<List<ShippingReport>> GetShippingReportAsync()
+    {
+        return await _ShippingReportCollection.Find(new BsonDocument()).ToListAsync();
+    }
+
+    public async Task<ShippingReport> GetShippingReportByIDAsync(string reportID)
+    {
+        return await _ShippingReportCollection.Find(x => x.ReportID == reportID).FirstOrDefaultAsync();
+    }
+
+    public async Task UpdateShippingReportAsync(string reportID, UpdateDefinition<ShippingReport> update)
+    {
+        await _ShippingReportCollection.UpdateOneAsync(
+            Builders<ShippingReport>.Filter.Eq("ReportID", reportID), update);
+    }
+
+    public async Task DeleteShippingReportAsync(string reportID)
+    {
+        await _ShippingReportCollection.DeleteOneAsync(
+            Builders<ShippingReport>.Filter.Eq("ReportID", reportID));
+    }
+
+    // Tracking
+    public async Task CreateTrackingAsync(Tracking tracking)
+    {
+        await _TrackingCollection.InsertOneAsync(tracking);
+    }
+
+    public async Task<List<Tracking>> GetTrackingAsync()
+    {
+        return await _TrackingCollection.Find(new BsonDocument()).ToListAsync();
+    }
+
+    public async Task<Tracking> GetTrackingByIDAsync(string trackingID)
+    {
+        return await _TrackingCollection.Find(x => x.TrackingID == trackingID).FirstOrDefaultAsync();
+    }
+
+    public async Task UpdateTrackingAsync(string trackingID, UpdateDefinition<Tracking> update)
+    {
+        await _TrackingCollection.UpdateOneAsync(
+            Builders<Tracking>.Filter.Eq("TrackingID", trackingID), update);
+    }
+
+    public async Task DeleteTrackingAsync(string trackingID)
+    {
+        await _TrackingCollection.DeleteOneAsync(
+            Builders<Tracking>.Filter.Eq("TrackingID", trackingID));
+    }
 }
