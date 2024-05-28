@@ -29,12 +29,12 @@ const Porosite = (props) => {
 
             <>
                 <div>
-                    <Nav /> {/* Optional navigation component */}
+                    <Nav /> {}
                     <h2 style={{ textAlign: 'center' }}>Porositë</h2>
                     <p>Këtu mund ti shihni të gjitha porositë.</p>
-                    <table className="table"> {/* Create a table structure */}
+                    <table className="table"> {}
                         <thead>
-                            <tr> {/* Table headers */}
+                            <tr> {}
                                 <th>ID</th>
                                 <th>Sasia</th>
                                 <th>Pranuesi</th>
@@ -56,7 +56,7 @@ const Porosite = (props) => {
                             {Array.isArray(Orders) && Orders.length > 0 ? (
                                 Orders.map((item) => {
                                     return (
-                                        <tr key={item.orderID}> {/* Create a row for each item */}
+                                        <tr key={item.orderID}> {}
                                             <td>{item.orderID}</td>
                                             <td>{item.quantity}</td>
                                             <td>{item.receiver_Name}</td>
@@ -78,7 +78,7 @@ const Porosite = (props) => {
                                 })
                             ) : (
                                 <tr>
-                                    <td colSpan="14">No orders were found.</td> {/* Handle empty data */}
+                                    <td colSpan="14">No orders were found.</td> {}
                                 </tr>
                             )}
                         </tbody>

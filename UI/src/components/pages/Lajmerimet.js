@@ -29,12 +29,12 @@ const Lajmerimet = (props) => {
 
             <>
                 <div>
-                    <Nav /> {/* Optional navigation component */}
+                    <Nav /> {}
                     <h2 style={{ textAlign: 'center' }}>Lajmerimet</h2>
                     <p>Këtu mund ti shihni të gjitha Lajmërimet .</p>
-                    <table className="table"> {/* Create a table structure */}
+                    <table className="table"> {}
                         <thead>
-                            <tr> {/* Table headers */}
+                            <tr> {}
                                 <th>Mesazhi</th>
                                 <th>U krijua</th>
                                 <th>Lloji i lajmerimit</th>
@@ -45,7 +45,7 @@ const Lajmerimet = (props) => {
                             {Array.isArray(Notifications) && Notifications.length > 0 ? (
                                 Notifications.map((item) => {
                                     return (
-                                        <tr key={item.message}> {/* Create a row for each item */}
+                                        <tr key={item.message}> {}
                                             <td>{item.createdAt}</td>
                                             <td>{item.notificationsTypeID}</td>
                                           
@@ -55,7 +55,7 @@ const Lajmerimet = (props) => {
                                 })
                             ) : (
                                 <tr>
-                                    <td colSpan="7">No notifications were  found.</td> {/* Handle empty data */}
+                                    <td colSpan="7">No notifications were  found.</td> {}
                                 </tr>
                             )}
                         </tbody>
