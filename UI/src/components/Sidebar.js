@@ -51,9 +51,9 @@ function Sidebar({children}) {
                         <i className='bi bi-bag-check me-2'></i>
                         <span>Porosite</span>
                     </NavLink>
-                    <NavLink to="/Notifications" className='menu-item' activeClassName='active'>
+                    <NavLink to="/Lajmerimet" className='menu-item' activeClassName='active'>
                         <i className='bi bi-bell me-2'></i>
-                        <span>Notifications</span>
+                        <span>Lajmerimet</span>
                     </NavLink>
                 </div>
             </div>

@@ -6,7 +6,7 @@ import Sidebar from './components/Sidebar';
 import Home from './components/Home';
 import { useState } from "react";
 import Klientet from './components/pages/Klientet';
-import Notifications from './components/pages/Notifications';
+import Lajmerimet from './components/pages/Lajmerimet';
 import Perdoruesit from "./components/pages/Perdoruesit";
 import RegjistoKlientet from "./components/pages/RegjistoKlientet";
 import Porosite from "./components/pages/Porosite";
@@ -33,7 +33,7 @@ function App() {
                 <Route exact path='/Klientet' element={<Klientet Toggle={Toggle} />} />
                 <Route exact path='/Regjistro-klientet' element={<RegjistoKlientet Toggle={Toggle} />} />
                 <Route exact path='/Perdoruesit' element={<Perdoruesit Toggle={Toggle} />} />
-                <Route excat path='/Notifications' element={<Notifications Toggle={Toggle} />} />
+                <Route excat path='/Lajmerimet' element={<Lajmerimet Toggle={Toggle} />} />
                 <Route excat path='/Porosite' element={<Porosite Toggle={Toggle} />} />
 
               </Routes>
