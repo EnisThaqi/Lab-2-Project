@@ -35,10 +35,6 @@ function Sidebar({children}) {
                         <i className='bi bi-person-add me-2'></i>
                         <span>Regjistro Perdoruesit</span>
                     </NavLink>
-                    <NavLink to="/Logjistika" className='menu-item' activeClassName='active'>
-                        <i className='bi bi-person-add me-2'></i>
-                        <span>Logjistika</span>
-                    </NavLink>
                     <NavLink to="/Financat" className='menu-item' activeClassName='active'>
                         <i className='bi bi-bank me-2'></i>
                         <span>Financat</span>
