@@ -4,6 +4,7 @@ using Lab2.DataService;
 using Lab2.DTOs;
 using Lab2.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Lab2.Controllers
 {
@@ -13,6 +14,7 @@ namespace Lab2.Controllers
     {
 
         private LabContext _context;
+        private OrderService _orderService;
         private readonly IMapper _mapper;
 
         public OrdersController(LabContext context, IMapper mapper)
@@ -66,6 +68,38 @@ namespace Lab2.Controllers
 
             return Ok(OrdersDTO);
         }
+
+        [HttpGet("subject/{subjectId}")]
+        [Authorize]
+        public async Task<IActionResult> GetOrdersBySubjectId(int subjectId)
+        {
+            var orders = await _orderService.GetOrdersBySubjectId(subjectId);
+            if (orders == null)
+            {
+                return NotFound();
+            }
+            return Ok(orders);
+        }
+
+        [HttpGet("subject")]
+        [Authorize]
+        public async Task<IActionResult> GetOrdersBySubjectId()
+        {
+            var subjectId = HttpContext.Session.GetInt32("subjectId");
+
+            if (!subjectId.HasValue)
+            {
+                return BadRequest("SubjectId not found in session.");
+            }
+
+            var orders = await _orderService.GetOrdersBySubjectId(subjectId.Value);
+            if (orders == null)
+            {
+                return NotFound();
+            }
+            return Ok(orders);
+        }
+
         [HttpPut("update/{id}")]
         public async Task<IActionResult> UpdateOrders(int id, [FromBody] OrdersDTO updatedOrdersDTO)
         {

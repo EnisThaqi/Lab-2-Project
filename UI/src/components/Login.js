@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Porosite2 from './pages/Porosite2'; // Import the fetchOrders function
 import './Login.css'; 
 
 const Login = () => {
@@ -12,15 +13,19 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const response = await axios.post('https://localhost:7270/User/login', { username, password });
-      const { role } = response.data;
+      const { role, subjectId } = response.data;
 
       localStorage.setItem('userRole', role);
+      localStorage.setItem('subjectId', subjectId);
 
       if (role === 3) {
         navigate('/sidebar');
       } else {
         navigate('/BusinessSidebar');
       }
+
+      // Fetch orders for the logged-in subject after successful login
+      await Porosite2();
     } catch (error) {
       if (error.response) {
         setError(error.response.data);

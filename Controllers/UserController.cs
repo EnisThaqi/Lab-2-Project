@@ -160,11 +160,14 @@ namespace Lab2.Controllers
                 return BadRequest("Incorrect password");
             }
 
+            var subjectId = await _context.user_subjects.Where(us => us.UserID == User.UserID).Select(us => us.SubjectID).FirstOrDefaultAsync();
+
             // Set up session or any other method for session management
             HttpContext.Session.SetString("UserUsername", user.Username);
 
-            return Ok(new { Message = "Login successful", Role = User.RoletID }); // i ki jep object nvend te roli id
+            return Ok(new { Message = "Login successful", Role = User.RoletID, SubjectId = subjectId });
         }
+
 
     }
 }

@@ -53,6 +53,10 @@ namespace Lab2.DataService
                 .WithMany(r => r.Users)
                 .HasForeignKey(u => u.RoletID);
 
+            modelBuilder.Entity<Subjects>()
+                .HasMany(s => s.orders)
+                .WithOne(o => o.Subject)
+                .HasForeignKey(o => o.SubjectID);
 
             modelBuilder.Entity<Subjects>()
                 .HasOne(s => s.subjectType)

@@ -31,7 +31,7 @@ namespace Lab2.DTOs
 
        
         public int StatusId{ get; set; }
-
+        public int SubjectID { get; set; }
 
     }
 }

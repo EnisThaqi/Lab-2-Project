@@ -45,6 +45,12 @@ namespace Lab2.Models
         [ForeignKey("OrderStatus")]
         public int StatusId { get; set; }
         public OrderStatus OrderStatus { get; set; }
+
+        public int SubjectID { get; set; }
+
+        [ForeignKey("SubjectID")]
+
+        public Subjects Subject { get; set; }
         public IList<Routes>? Routes { get; set; }
         public ICollection<InvoiceOrders> InvoiceOrders { get; set; }
          
