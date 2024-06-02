@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Porosite2 from './pages/Porosite2'; // Import the fetchOrders function
 import './Login.css'; 
 
 const Login = () => {
@@ -25,7 +24,7 @@ const Login = () => {
       }
 
       // Fetch orders for the logged-in subject after successful login
-      await Porosite2();
+      //await Porosite2(); // Assuming this is not required for now
     } catch (error) {
       if (error.response) {
         setError(error.response.data);
@@ -33,6 +32,11 @@ const Login = () => {
         setError('An error occurred. Please try again.');
       }
     }
+  };
+
+  const handleNoAccountClick = () => {
+    // Redirect to NoAccount.js
+    navigate('/NoAccount');
   };
 
   return (
@@ -53,6 +57,9 @@ const Login = () => {
           placeholder="Password"
         />
         <button onClick={handleLogin}>Login</button>
+        <div className="no-account-button" onClick={handleNoAccountClick}>
+          No Account? Then use Tracking ID to track your order.
+        </div>
         {error && <div className="error-message">{error}</div>}
       </div>
     </div>
