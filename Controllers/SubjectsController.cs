@@ -4,6 +4,7 @@ using Lab2.DataService;
 using Lab2.DTOs;
 using Lab2.Models;
 using Microsoft.EntityFrameworkCore;
+using BCrypt.Net;
 
 namespace Lab2.Controllers
 {
@@ -14,29 +15,16 @@ namespace Lab2.Controllers
 
         private LabContext _context;
         private readonly IMapper _mapper;
+        private UserService _userService;
 
-        public SubjectsController(LabContext context, IMapper mapper)
+        public SubjectsController(LabContext context, IMapper mapper, UserService userService)
         {
             _context = context;
             _mapper = mapper;
+            _userService = userService;
         }
 
-        [HttpPost("create")]
-        public async Task<IActionResult> AddSubjects([FromBody] SubjectsDTO subjects)
-        {
-            if (subjects == null)
-            {
-                return BadRequest("Invalid subject data");
-            }
-
-            var newSubjects = _mapper.Map<Subjects>(subjects);
-
-            _context.subjects.Add(newSubjects);
-            await _context.SaveChangesAsync();
-
-
-            return Ok();
-        }
+        
 
         [HttpGet("Read/{id}")]
         public IActionResult GetSubjects(int id)
@@ -107,6 +95,45 @@ namespace Lab2.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        [HttpPost("create")]
+        public async Task<IActionResult> AddSubject([FromBody] SubjectsDTO subjects)
+        {
+            if (subjects == null)
+            {
+                return BadRequest("Invalid subject data");
+            }
+
+            var newSubjects = _mapper.Map<Subjects>(subjects);
+
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword("12345678");
+
+            _context.subjects.Add(newSubjects);
+            await _context.SaveChangesAsync();
+
+            
+            var user = new UserDTO
+            {
+                Username = $"UserForSubject{newSubjects.SubjectID}",
+                Email = $"subject{newSubjects.SubjectID}@example.com",
+                Address = "Default Address",
+                Password = hashedPassword,
+                PhoneNumber = "Default Number",
+
+
+            };
+
+
+            var userSubjectRequest = new UserSubjectRequest
+            {
+                User = user,
+                SubjectIds = new List<int> { newSubjects.SubjectID }
+            };
+
+            await _userService.CreateUserForSubjects(userSubjectRequest.User, userSubjectRequest.SubjectIds);
+
+            return Ok(newSubjects);
         }
     }
 }

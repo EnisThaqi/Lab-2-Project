@@ -4,6 +4,8 @@ using Lab2.DataService;
 using Lab2.DTOs;
 using Lab2.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
+using BCrypt.Net;
 
 namespace Lab2.Controllers
 {
@@ -108,5 +110,61 @@ namespace Lab2.Controllers
 
             return NoContent();
         }
+
+
+        [HttpPost("signup")]
+        public async Task<IActionResult> Signup([FromBody] UserDTO user)
+        {
+            if (user == null)
+            {
+                return BadRequest("Invalid user data");
+            }
+
+            var existsingUsers = await _context.users.Where(u => u.Username == user.Username || u.Email == user.Email).ToListAsync();
+            if (existsingUsers !=  null && existsingUsers.Any())
+            {
+                return BadRequest("User already exists");
+            }
+
+            var users = new User
+            {
+                Username = user.Username,
+                Email = user.Email,
+                Password = BCrypt.Net.BCrypt.HashPassword(user.Password),
+                Address = user.Address,
+                PhoneNumber = user.PhoneNumber,
+                RoletID = 3
+            };
+
+            _context.users.Add(users);
+            await _context.SaveChangesAsync();
+            return Ok("User registered successfully");
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginDTO user)
+        {
+            if (user == null)
+            {
+                return BadRequest("Invalid login data");
+            }
+
+            var User = await _context.users.FirstOrDefaultAsync(u => u.Username == user.Username);
+            if (User == null)
+            {
+                return NotFound("User not found");
+            }
+
+            if (!BCrypt.Net.BCrypt.Verify(user.Password, User.Password))
+            {
+                return BadRequest("Incorrect password");
+            }
+
+            // Set up session or any other method for session management
+            HttpContext.Session.SetString("UserUsername", user.Username);
+
+            return Ok(new { Message = "Login successful", Role = User.RoletID }); // i ki jep object nvend te roli id
+        }
+
     }
 }

@@ -14,18 +14,18 @@ namespace Lab2.DataService
 
             public async Task CreateUserForSubjects(UserDTO userDTO, List<int> subjectIds)
             {
-                var user = new User
-                {
-                    // Map properties from userDTO
-                    Username = userDTO.Username,
-                    Email = userDTO.Email,
-                    Address = userDTO.Address,
-                    Password = userDTO.Password,
-                    PhoneNumber = userDTO.PhoneNumber,
-                    // Map other properties accordingly
-                    Created_At = DateTime.Now,
-                    RoletID = userDTO.RoletID
-                };
+            var user = new User
+            {
+                // Map properties from userDTO
+                Username = userDTO.Username,
+                Email = userDTO.Email,
+                Address = userDTO.Address,
+                Password = userDTO.Password,
+                PhoneNumber = userDTO.PhoneNumber,
+                // Map other properties accordingly
+                Created_At = DateTime.Now,
+                RoletID = userDTO.RoletID ?? 5
+            };
 
                 _context.users.Add(user);
                 await _context.SaveChangesAsync();
