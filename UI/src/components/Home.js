@@ -15,13 +15,11 @@ const Home = ({ Toggle }) => {
             const response = await fetch('https://localhost:7270/Subjects/get-all');
             const data = await response.json();
 
-            // Extract unique subject_TypeIDs and their counts
             const counts = {};
             data.forEach(subject => {
                 counts[subject.subject_TypeID] = (counts[subject.subject_TypeID] || 0) + 1;
             });
 
-            // Prepare data for the pie chart
             const processedData = {
                 labels: Object.keys(counts),
                 datasets: [
