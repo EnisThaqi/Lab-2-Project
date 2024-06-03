@@ -9,7 +9,7 @@ import Lajmerimet from "../pages/Lajmerimet";
 import Porosite from "../pages/Porosite";
 import RegjistroPerdoruesit from "../pages/RegjistroPerdoruesit";
 import Financat from "../pages/Financat"; 
-import Analitika from "../pages/Analitika"; 
+import Analitika from "../pages/Analitika";
 
 const AdminLayout = () => {
     const [toggle, setToggle] = useState(true);

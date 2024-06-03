@@ -98,5 +98,18 @@ namespace Lab2.Controllers
 
             return Ok(invoiceDTOs);
         }
+
+        [HttpGet("invoce")]
+        public async Task<IActionResult> GetInvoiceBySubjectId([FromQuery] int subjectId)
+        {
+            var invoices = await _context.invoices
+                                 .Where(invoices => invoices.SubjectID == subjectId)
+                                 .ToListAsync();
+            if (invoices == null)
+            {
+                return NotFound();
+            }
+            return Ok(invoices);
+        }
     }
 }
