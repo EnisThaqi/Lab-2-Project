@@ -20,7 +20,7 @@ const Porosite2 = () => {
                 setOrders(response.data);
             } catch (error) {
                 if (error.response) {
-                    setError(error.response.data);
+                    setError(error.response.data.message);
                 } else {
                     setError('An error occurred. Please try again.');
                 }
@@ -30,35 +30,52 @@ const Porosite2 = () => {
         fetchOrders();
     }, []);
 
+    const handleDelete = async (orderId) => {
+        const deleteUrl = `https://localhost:7270/orders/delete/${orderId}`;
+
+        try {
+            await axios.delete(deleteUrl);
+            setOrders(orders.filter(order => order.orderID !== orderId));
+        } catch (error) {
+            if (error.response) {
+                setError(error.response.data.message);
+            } else {
+                setError('An error occurred. Please try again.');
+            }
+        }
+    };
+
     return (
         <>
             <div>
                 <h2 style={{ textAlign: 'center' }}>Porositë</h2>
                 <p>Këtu mund ti shihni të gjitha porositë.</p>
-                {error && <div className="error-message">{error} (Subject ID: {subjectId})</div>}
-                {orders.length === 0 && <p>No orders found. (Subject ID: {subjectId})</p>}
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Sasia</th>
-                            <th>Pranuesi</th>
-                            <th>Pesha</th>
-                            <th>Shteti</th>
-                            <th>Nr i pranuesit</th>
-                            <th>Adresa</th>
-                            <th>Pershkrimi</th>
-                            <th>Infot</th>
-                            <th>Kodi</th>
-                            <th>Hapet</th>
-                            <th>Kthehet</th>
-                            <th>Madhesia</th>
-                            <th>Statusi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {Array.isArray(orders) && orders.length > 0 ? (
-                            orders.map((order) => (
+                {error && <div className="error-message">{error}</div>}
+                {orders.length === 0 ? (
+                    <p>No orders were found.</p>
+                ) : (
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Sasia</th>
+                                <th>Pranuesi</th>
+                                <th>Pesha</th>
+                                <th>Shteti</th>
+                                <th>Nr i pranuesit</th>
+                                <th>Adresa</th>
+                                <th>Pershkrimi</th>
+                                <th>Infot</th>
+                                <th>Kodi</th>
+                                <th>Hapet</th>
+                                <th>Kthehet</th>
+                                <th>Madhesia</th>
+                                <th>Statusi</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {orders.map((order) => (
                                 <tr key={order.orderID}>
                                     <td>{order.orderID}</td>
                                     <td>{order.quantity}</td>
@@ -74,15 +91,12 @@ const Porosite2 = () => {
                                     <td>{order.is_take_back}</td>
                                     <td>{order.packageSizeId}</td>
                                     <td>{order.statusId}</td>
+                                    <td><button onClick={() => handleDelete(order.orderID)}>Delete</button></td>
                                 </tr>
-                            ))
-                        ) : (
-                            <tr>
-                                <td colSpan="14">No orders were found.</td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
+                            ))}
+                        </tbody>
+                    </table>
+                )}
             </div>
         </>
     );

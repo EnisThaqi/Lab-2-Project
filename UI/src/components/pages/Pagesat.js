@@ -18,10 +18,10 @@ const Pagesat = () => {
                         subjectId: storedSubjectId
                     }
                 });
-                console.log('Fetched Invoices:', response.data); // Debugging
+                console.log('Fetched Invoices:', response.data); 
                 setInvoices(response.data);
             } catch (error) {
-                console.error('Error fetching invoices:', error); // Debugging
+                console.error('Error fetching invoices:', error); 
                 if (error.response) {
                     setError(error.response.data);
                 } else {
