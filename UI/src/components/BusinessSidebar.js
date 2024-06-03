@@ -1,18 +1,19 @@
-// Sidebar.js
 import React, { useState } from 'react';
 import './style.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 function BusinessSidebar({ children }) {
     const [menuOpen, setMenuOpen] = useState(true);
+    const navigate = useNavigate();
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     };
 
     const handleLogout = () => {
-        // Handle logout logic here
-        console.log("Logged out");
+        localStorage.removeItem('userRole');
+        localStorage.removeItem('subjectId');
+        navigate('/login');
     };
 
     return (
