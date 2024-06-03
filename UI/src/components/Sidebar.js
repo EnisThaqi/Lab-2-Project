@@ -54,6 +54,10 @@ function Sidebar({children}) {
                         <i className='bi bi-bell me-2'></i>
                         <span>Lajmerimet</span>
                     </NavLink>
+                    <NavLink to="/Reports" className='menu-item' activeClassName='active'>
+                        <i className='bi bi-file-earmark-text me-2'></i>
+                        <span>Raporte</span>
+                    </NavLink>
                 </div>
             </div>
             <div style={{

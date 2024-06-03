@@ -11,6 +11,7 @@ import RegjistroPerdoruesit from "../pages/RegjistroPerdoruesit";
 import Financat from "../pages/Financat"; 
 import Analitika from "../pages/Analitika";
 import RegjistroFaturen from "../pages/RegjistroFaturen";
+import Reports from "../pages/Reports";
 
 const AdminLayout = () => {
     const [toggle, setToggle] = useState(true);
@@ -32,6 +33,7 @@ const AdminLayout = () => {
                 <Route exact path='/Financat' element={<Financat Toggle={Toggle} />} />
                 <Route exact path='/Analitika' element={<Analitika Toggle={Toggle} />} />
                 <Route exact path='/RegjistroFaturen' element={<RegjistroFaturen Toggle={Toggle} />} />
+		<Route exact path='/Reports' element={<Reports Toggle={Toggle} />} /> 
             </Routes>
         </Sidebar>
     )
