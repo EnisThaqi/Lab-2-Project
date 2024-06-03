@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import * as XLSX from 'xlsx';
 
 const Pagesat = () => {
     const [invoices, setInvoices] = useState([]);
@@ -17,8 +18,10 @@ const Pagesat = () => {
                         subjectId: storedSubjectId
                     }
                 });
+                console.log('Fetched Invoices:', response.data); // Debugging
                 setInvoices(response.data);
             } catch (error) {
+                console.error('Error fetching invoices:', error); // Debugging
                 if (error.response) {
                     setError(error.response.data);
                 } else {
@@ -30,6 +33,18 @@ const Pagesat = () => {
         fetchInvoices();
     }, []);
 
+    const exportToExcel = () => {
+        if (invoices.length === 0) {
+            setError('No invoices to export');
+            return;
+        }
+
+        const worksheet = XLSX.utils.json_to_sheet(invoices);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Invoices');
+        XLSX.writeFile(workbook, 'invoices.xlsx');
+    };
+
     return (
         <>
             <div>
@@ -37,6 +52,7 @@ const Pagesat = () => {
                 <p>Këtu mund ti shihni të gjitha faturat.</p>
                 {error && <div className="error-message">{error} (Subject ID: {subjectId})</div>}
                 {invoices.length === 0 && <p>No invoices found. (Subject ID: {subjectId})</p>}
+                <button onClick={exportToExcel} style={{ marginBottom: '10px' }}>Export to Excel</button>
                 <table className="table">
                     <thead>
                         <tr>
