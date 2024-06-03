@@ -6,8 +6,7 @@ import { useState } from "react";
 import Login from "./components/Login";
 import AdminLayout from "./components/Layout/AdminLayout";
 import BussinesLayout from "./components/Layout/BussinesLayout";
-
-
+import NoAccount from "./components/NoAccount";
 
 function App() {
   const [toggle, setToggle] = useState(true);
@@ -40,6 +39,8 @@ function App() {
 
               <Route path='/login' element={<Login />} />
 
+              {/* Add route for NoAccount */}
+              <Route path='/NoAccount' element={<NoAccount />} />
 
               {
                 role == '3' ?
