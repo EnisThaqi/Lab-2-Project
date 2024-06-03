@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './Login.css'; 
+import './Login.css';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -22,9 +22,6 @@ const Login = () => {
       } else {
         navigate('/BusinessSidebar');
       }
-
-      // Fetch orders for the logged-in subject after successful login
-      //await Porosite2(); // Assuming this is not required for now
     } catch (error) {
       if (error.response) {
         setError(error.response.data);
@@ -35,7 +32,6 @@ const Login = () => {
   };
 
   const handleNoAccountClick = () => {
-    // Redirect to NoAccount.js
     navigate('/NoAccount');
   };
 

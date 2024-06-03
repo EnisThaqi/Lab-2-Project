@@ -10,6 +10,7 @@ import Porosite from "../pages/Porosite";
 import RegjistroPerdoruesit from "../pages/RegjistroPerdoruesit";
 import Financat from "../pages/Financat"; 
 import Analitika from "../pages/Analitika";
+import RegjistroFaturen from "../pages/RegjistroFaturen";
 
 const AdminLayout = () => {
     const [toggle, setToggle] = useState(true);
@@ -30,6 +31,7 @@ const AdminLayout = () => {
                 <Route excat path='/Regjistro-perdoruesit' element={<RegjistroPerdoruesit Toggle={Toggle} />} />
                 <Route exact path='/Financat' element={<Financat Toggle={Toggle} />} />
                 <Route exact path='/Analitika' element={<Analitika Toggle={Toggle} />} />
+                <Route exact path='/RegjistroFaturen' element={<RegjistroFaturen Toggle={Toggle} />} />
             </Routes>
         </Sidebar>
     )

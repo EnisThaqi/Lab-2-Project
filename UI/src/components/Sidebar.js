@@ -46,6 +46,10 @@ function Sidebar({children}) {
                         <i className='bi bi-bag-check me-2'></i>
                         <span>Porosite</span>
                     </NavLink>
+                    <NavLink to="/RegjistroFaturen" className='menu-item' activeClassName='active'>
+                        <i className='bi bi-file-earmark-plus-fill me-2'></i>
+                        <span>Regjistro Fatura</span>
+                    </NavLink>
                     <NavLink to="/Lajmerimet" className='menu-item' activeClassName='active'>
                         <i className='bi bi-bell me-2'></i>
                         <span>Lajmerimet</span>
