@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using System.Buffers.Text;
 using Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal;
+using static Lab2.Models.Book;
 
 namespace Lab2.DataService
 {
@@ -43,9 +44,39 @@ namespace Lab2.DataService
         public DbSet<InvoiceOrders> invoiceorders { get; set; }
         public DbSet<Payments> payments { get; set; }
         public DbSet<PaymentMethods> paymentmethods { get; set; }
+        //per lidhjen njo me shum
+        //public DbSet<Author> Authors { get; set; }
+        //public DbSet<Book> Books { get; set; }
+
+        //shum me shum
+        //public DbSet<Author> Authors { get; set; }
+        //public DbSet<Book> Books { get; set; }
+        //public DbSet<BookAuthor> BookAuthors { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
        {
+            //shum me shum 
+            //modelBuilder.Entity<BookAuthor>()
+            //HasKey(ba => new { ba.BookId, ba.AuthorId });
+
+            //modelBuilder.Entity<BookAuthor>()
+            //.HasOne(ba => ba.Book)
+            //.WithMany(b => b.BookAuthors)
+            //.HasForeignKey(ba => ba.BookId);
+
+            //modelBuilder.Entity<BookAuthor>()
+            //.HasOne(ba => ba.Author)
+            //.WithMany(a => a.BookAuthors)
+            //.HasForeignKey(ba => ba.AuthorId);
+
+            //njo me njo
+
+            //modelBuilder.Entity<Book>()
+            //.HasOne(b => b.Author)
+            //.WithOne(a => a.Book)
+            //.HasForeignKey<Book>(b => b.AuthorId);
+
+
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>()
