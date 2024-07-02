@@ -38,6 +38,10 @@ function BusinessSidebar({ children }) {
                             <i className='bi bi-credit-card me-2'></i>
                             <span>Pagesat</span>
                         </NavLink>
+                        <NavLink to="/Reports" className='menu-item' activeClassName='active'>
+                        <i className='bi bi-file-earmark-text me-2'></i>
+                        <span>Raporte</span>
+                    </NavLink>
                     </div>
                 </div>
                 <button onClick={toggleMenu} className='menu-toggle'>

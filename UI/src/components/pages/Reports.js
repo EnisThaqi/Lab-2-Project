@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Nav from "../Nav";
-import "./Reports.css";
 
 const Reports = () => {
     const [startDate, setStartDate] = useState('');
@@ -9,22 +8,37 @@ const Reports = () => {
     const [receiverName, setReceiverName] = useState('');
     const [receiverCountry, setReceiverCountry] = useState('');
     const [status, setStatus] = useState('');
+    const [reportData, setReportData] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
     const handleGenerateReport = async () => {
+        setLoading(true);
+        setError('');
+
         const criteria = {
-            startDate,
-            endDate,
-            receiverName,
-            receiverCountry,
-            status,
+            startDate: startDate,
+            endDate: endDate,
+            receiverName: receiverName,
+            receiverCountry: receiverCountry,
+            status: status,
         };
 
+        console.log('Sending criteria:', criteria); 
+
         try {
-            const response = await axios.post('/api/reports/generate', criteria);
-            // Handle the response, e.g., display the report
-            console.log(response.data);
+            const response = await axios.post('https://localhost:7270/api/reports/generate', criteria);
+            console.log('Response:', response.data);  
+            setReportData(response.data); 
         } catch (error) {
             console.error('Error generating report:', error);
+            if (error.response) {
+                setError(error.response.data.message);
+            } else {
+                setError('An error occurred. Please try again.'); 
+            }
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -51,7 +65,27 @@ const Reports = () => {
                 <label>Status:</label>
                 <input type="text" value={status} onChange={(e) => setStatus(e.target.value)} />
             </div>
-            <button onClick={handleGenerateReport}>Generate Report</button>
+            <button onClick={handleGenerateReport} disabled={loading}>Generate Report</button>
+
+            {/* Loading Indicator */}
+            {loading && <p>Loading...</p>}
+
+            {/* Error Message */}
+            {error && <p className="error-message">{error}</p>}
+
+            {/* Display the fetched report data */}
+            {reportData && reportData.length > 0 && (
+                <div>
+                    <h2>Generated Report Data:</h2>
+                    <ul>
+                        {reportData.map((item, index) => (
+                            <li key={index}>
+                                Order ID: {item.orderID}, Receiver Name: {item.receiverName}, Status: {item.orderStatus}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div>
     );
 };
