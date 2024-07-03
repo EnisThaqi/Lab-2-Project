@@ -40,5 +40,22 @@
         public AuthorDto Author { get; set; }
     }
 
+    //detyra palanet satelit me dto
+    public class PlanetDTO
+    {
+        public int PlanetId { get; set; }
+        public string Name { get; set; }
+        public string Type { get; set; }
+        public bool IsDeleted { get; set; }
+    }
+
+    public class SatelliteDTO
+    {
+        public int SatelliteId { get; set; }
+        public string Name { get; set; }
+        public bool IsDeleted { get; set; }
+        public int PlanetId { get; set; }
+    }
+
 
 }
